@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
     res.json({
       status: 'success',
       message: 'retrieved single sighting',
-      payload: sighting
+      payload: sighting[0]
     })
   } catch(err) {
     res.json({
@@ -97,11 +97,11 @@ router.post('/', async (req, res) => {
     ...req.body
   }
   try {
-    const sighting = await Sightings.addNew(body)
+    let sighting = await Sightings.addNew(body)
     res.json({
       status: 'success',
       message: 'sighting added',
-      payload: sighting
+      payload: sighting[0]
     })
   } catch(err) {
     console.log(err)
@@ -120,7 +120,7 @@ router.delete('/:id', async (req, res) => {
     res.json({
       status: 'success',
       message: 'sighting deleted',
-      payload: deleted
+      payload: deleted[0]
     })
   } catch(err) {
     res.json({

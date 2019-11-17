@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
     res.json({
       status: 'success',
       message: 'retrieved single researcher',
-      payload: researcher
+      payload: researcher[0]
     })
   } catch(err) {
     res.json({
@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
     res.json({
       status: 'success',
       message: 'researcher added',
-      payload: researcher
+      payload: researcher[0]
     })
   } catch(err) {
     res.json({
@@ -69,7 +69,7 @@ router.put('/:id', async (req, res) => {
     res.json({
       status: 'success',
       message: 'researcher updated',
-      payload: updated
+      payload: updated[0]
     })
   } catch(err) {
     console.log(err)
@@ -88,7 +88,7 @@ router.delete('/:id', async (req, res) => {
     res.json({
       status: 'success',
       message: 'researcher deleted',
-      payload: deleted
+      payload: deleted[0]
     })
   } catch(err) {
     res.json({

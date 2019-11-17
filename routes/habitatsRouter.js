@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
     res.json({
       status: 'success',
       message: 'retrieved single habitat',
-      payload: habitat
+      payload: habitat[0]
     })
   } catch(err) {
     res.json({
@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
     res.json({
       status: 'success',
       message: 'habitat added',
-      payload: habitat
+      payload: habitat[0]
     })
   } catch(err) {
     res.json({

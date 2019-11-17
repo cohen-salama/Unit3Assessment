@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
     res.json({
       status: 'success',
       message: 'retrieved single species',
-      payload: species
+      payload: species[0]
     })
   } catch(err) {
     res.json({
