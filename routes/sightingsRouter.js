@@ -44,13 +44,13 @@ router.get('/species/:id', async (req, res) => {
     const sighting = await Sightings.getBySpeciesId(id)
     res.json({
       status: 'success',
-      message: 'retrieved single sighting',
-      payload: sighting
+      message: 'retrieved sightings',
+      payload: sightings
     })
   } catch(err) {
     res.json({
       status: 'error',
-      message: 'sighting not found',
+      message: 'no sightings found',
       payload: null
     })
   }
@@ -59,16 +59,16 @@ router.get('/species/:id', async (req, res) => {
 router.get('/researchers/:id', async (req, res) => {
   const id = req.params.id
   try {
-    const sighting = await Sightings.getByResearcherId(id)
+    const sightings = await Sightings.getByResearcherId(id)
     res.json({
       status: 'success',
-      message: 'retrieved single sighting',
-      payload: sighting
+      message: 'retrieved sightings',
+      payload: sightings
     })
   } catch(err) {
     res.json({
       status: 'error',
-      message: 'sighting not found',
+      message: 'no sightings found',
       payload: null
     })
   }
@@ -80,13 +80,13 @@ router.get('/habitats/:id', async (req, res) => {
     const sighting = await Sightings.getByHabitatId(id)
     res.json({
       status: 'success',
-      message: 'retrieved single sighting',
-      payload: sighting
+      message: 'retrieved sightings',
+      payload: sightings
     })
   } catch(err) {
     res.json({
       status: 'error',
-      message: 'sighting not found',
+      message: 'no sightings found',
       payload: null
     })
   }
@@ -97,13 +97,14 @@ router.post('/', async (req, res) => {
     ...req.body
   }
   try {
-    const researcher = await Sightings.addNew(body)
+    const sighting = await Sightings.addNew(body)
     res.json({
       status: 'success',
       message: 'sighting added',
       payload: sighting
     })
   } catch(err) {
+    console.log(err)
     res.json({
       status: 'error',
       message: 'sighting not added',
