@@ -1,11 +1,11 @@
 const express = require('express')
-const cors = requier('cors')
+const cors = require('cors')
 
-const researchersRouter = require('./routes/researchers')
-const speciesRouter = require('./routes/species')
-const animalsRouter = require('./routes/animals')
-const habitatsRouter = require('./routes/habitats')
-const sightingsRouter = require('./routes/sightings')
+const researchersRouter = require('./routes/researchersRouter')
+const speciesRouter = require('./routes/speciesRouter')
+const animalsRouter = require('./routes/animalsRouter')
+const habitatsRouter = require('./routes/habitatsRouter')
+const sightingsRouter = require('./routes/sightingsRouter')
 
 const app = express()
 const PORT = 3030
@@ -15,10 +15,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use('/researchers', researchersRouter)
-app.use('/species', speciesRouter)
-app.use('/animals', animalsRouter)
-app.use('/habitats', habitatsRouter)
-app.use('/sightings', sightingsRouter)
+//app.use('/species', speciesRouter)
+//app.use('/animals', animalsRouter)
+//app.use('/habitats', habitatsRouter)
+//app.use('/sightings', sightingsRouter)
 
 app.listen(PORT, () => {
   console.log(`listening ${PORT}`)

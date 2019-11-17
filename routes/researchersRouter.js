@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
       message: 'retrieved all researchers',
       payload: researchers
   })
-  } catch {
+  } catch(err) {
     res.json({
       status: 'error',
       message: 'no researchers found',
@@ -29,7 +29,7 @@ router.get('/:id', async (req, res) => {
       message: 'retrieved single researcher',
       payload: researcher
     })
-  } catch {
+  } catch(err) {
     res.json({
       status: 'error',
       message: 'researcher not found',
@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
       message: 'researcher added',
       payload: researcher
     })
-  } catch {
+  } catch(err) {
     res.json({
       status: 'error',
       message: 'researcher not added',
@@ -69,7 +69,7 @@ router.put('/:id', async (req, res) => {
       message: 'researcher updated',
       payload: updated
     })
-  } catch {
+  } catch(err) {
     res.json({
       status: 'error',
       message: 'researcher not updated',
@@ -81,13 +81,13 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const id = req.params.id
   try {
-    const deleted await Researchers.deleteById(id)
+    const deleted = await Researchers.deleteById(id)
     res.json({
       status: 'success',
       message: 'researcher deleted',
       payload: deleted
     })
-  } catch {
+  } catch(err) {
     res.json({
       status: 'error',
       message: 'researcher not deleted',
@@ -95,4 +95,5 @@ router.delete('/:id', async (req, res) => {
     })
   }
 })
-})
+
+module.exports = router
