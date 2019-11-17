@@ -17,8 +17,9 @@ CREATE TABLE species (
 
 CREATE TABLE animals (
   id SERIAL PRIMARY KEY,
-  species_id INT FOREIGN KEY REFERENCES species(id),
-  nickname VARCHAR NOT NULL
+  species_id INT,
+  nickname VARCHAR NOT NULL,
+  FOREIGN KEY (species_id) REFERENCES species(id)
 );
 
 CREATE TABLE habitats (
@@ -27,10 +28,13 @@ CREATE TABLE habitats (
 );
 
 CREATE TABLE sightings (
-  id SERIAL PRIMARY KEY
-  researcher_id INT FOREIGN KEY REFERENCES researchers(id),
-  species_ id INT FOREIGN KEY REFERENCES species(id),
-  habitat_id INT FOREIGN KEY REFERENCES habitats(id)
+  id SERIAL PRIMARY KEY,
+  researcher_id INT,
+  species_id INT,
+  habitat_id INT,
+  FOREIGN KEY (researcher_id) REFERENCES researchers(id),
+  FOREIGN KEY (species_id) REFERENCES species(id),
+  FOREIGN KEY (habitat_id) REFERENCES habitats(id)
 );
 
 INSERT INTO researchers(name, job_title) VALUES
@@ -75,5 +79,6 @@ INSERT INTO sightings(species_id, researcher_id, habitat_id) VALUES
 (2, 5, 1)  -- A Moray Eel was spotted by Ezra Flip in the Shallows.
 ;
 
-SELECT *
+SELECT * FROM researchers, species, animals, habitats, sightings
+;
 ;
