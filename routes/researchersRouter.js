@@ -59,17 +59,20 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
+  const id = req.params.id
   const body = {
     ...req.body
   }
+  console.log(body)
   try {
-    const updated = await Researchers.updateById(body)
+    const updated = await Researchers.updateById(id, body)
     res.json({
       status: 'success',
       message: 'researcher updated',
       payload: updated
     })
   } catch(err) {
+    console.log(err)
     res.json({
       status: 'error',
       message: 'researcher not updated',
