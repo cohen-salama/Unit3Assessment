@@ -33,8 +33,17 @@ const addNew = async (body) => {
 
 const updateById = async (id, body) => {
   try {
-    let updateQuery = `UPDATE animals SET species_id = ($1), nickname = ($2) WHERE id = ${id} RETURNING *`
-    let updatedItem = await db.one(updateQuery, [body.species_id, body.nickname])
+    let updatedItem
+    if (body.species_id === undefined) {
+      let updateQuery = `UPDATE animals SET nickname = ($1) WHERE id = ${id} RETURNING *`
+      updatedItem = await db.one(updateQuery, [body.nickname])
+    } else if (body.nickname === undefined) {
+      let updateQuery = `UPDATE animals SET species_id = ($1) WHERE id = ${id} RETURNING *`
+      updatedItem = await db.one(updateQuery, [body.species_id])
+    } else {
+      let updateQuery = `UPDATE animals SET species_id = ($1), nickname = ($2) WHERE id = ${id} RETURNING *`
+      updatedItem = await db.one(updateQuery, [body.species_id, body.nickname])
+    }
     return updatedItem
   }
   catch(err) {
